@@ -1,0 +1,40 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="mb-3">
+  <%= f.label :email, class: "form-label"%>
+</div>
+<div class="mb-3">
+  <%= f.text_field :email, class: "form-control", id: "exampleFormControlInput1" %><br>
+</div>
+
+<div class="mb-3">
+  <%= f.label :mobile, class: "form-label"%>
+</div>
+<div class="mb-3">
+  <%= f.text_field :mobile, class: "form-control", id: "exampleFormControlInput1" %><br>
+</div>
+
+<div class="mb-3">
+  <%= f.label :password, class: "form-label" %><br>
+     <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+</div>
+<div class="mb-3">
+  <%= f.password_field :password, class: "form-control", id: "exampleFormControlInput1" , autocomplete: "new-password"%><br>
+</div>
+
+<div class="mb-3">
+  <%= f.label :password_confirmation, class: "form-label" %><br>
+</div>
+<div class="mb-3">
+  <%= f.password_field :password_confirmation, class: "form-control", id: "exampleFormControlInput1" , autocomplete: "new-password"%><br>
+</div>
+
+<%= f.submit "Sign Up", class: "btn btn-primary" %>
+<% end %>
+
+<%= render "devise/shared/links" %>

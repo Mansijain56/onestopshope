@@ -1,0 +1,14 @@
+<h1>Hi
+<% if @user.profile.name.present?%> 
+<%= @user.profile.name %> 
+<% else %>
+    User
+<% end %>
+</h1>
+
+<p>Your have placed order: <%= @order.id %> </p>
+<% @order.order_items.each do |oi| %>
+<%= oi.product.brand%>
+<%= oi.product.model%>
+<p>Thank you for shopping with OneStopShop</p>
+<% end %>

@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-light", style="background-color: #e9b9e8;">
+<%= link_to "OneStopShop", root_url, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+  <ul class="navbar-nav" style="
+  width: 1100px;
+">
+  <% if user_signed_in?%>
+    <% if current_user.profile.avatar.present? %>
+      <%= image_tag  current_user.profile.avatar, width: "30px", height: "30px"%>
+    <% end %>
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home </a>
+      </li>
+      <li class="nav-item" >
+        <%= link_to "Profile",  profile_path(current_user.profile.id), class: "nav-link" %>
+      </li>
+      <% if current_user.orders.present? %>
+        <li class="nav-item" >
+          <%= link_to "Orders",  orders_path, class: "nav-link" %>
+        </li>
+      <% end %>
+        <li class="nav-item">
+          <%= link_to "Address",  addresses_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Voucher",  voucher_path, class: "nav-link" %>
+        </li>
+      <li class="nav-item"  style=" margin-right: 5px; margin-left: 38rem;">
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class:"btn btn-outline-success me-2"  %>
+      </li>
+<% else %>
+    <li class="nav-item active">
+      <a class="nav-link" href="/">Home </a>
+    </li>
+    <ul class="navbar-nav d-flex", style="margin-left: 800px;">
+      <li class="nav-item"  style=" margin-right: 5px; margin-left: 5px;">
+        <%= link_to "Sign In", new_user_session_path, class:"btn btn-outline-success me-2"%>
+      </li>
+      <li class="nav-item"  style=" margin-right: 5px; margin-left: 5px;">
+        <%=  link_to "Sign Up", new_user_registration_path, class:"btn btn-outline-success me-2" %>
+      </li>
+    </ul>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+
+<ul class="nav nav-tabs" style="background-color: #f0daf0; margin-bottom: 50px">
+  <%# <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Dropdown</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item" href="#">Separated link</a></li>
+    </ul>
+  </li> %>
+  <li class="nav-item">
+    <%= link_to "View Products",  products_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Sell Products",  new_product_path, class: "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <% if user_signed_in? %>
+      <%=  link_to "Cart", cart_items_path, class: "nav-link", data: {bs_target: "#CartItems", bs_toggle: "modal", remote: true}%>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <% if user_signed_in? %>
+      <%=  link_to "Your Orders", csv_products_path, class: "nav-link"%>
+    <% end %>
+  </li>
+</ul>

@@ -1,0 +1,7 @@
+<div id="all-address" class="hstack gap-3">
+    <% current_user.addresses.each do |a| %>
+        <%= render "all_address", address: a  %>
+    <% end %>
+</div>
+  <%= link_to "Add Address", new_address_path, class: "btn btn-primary", data: {bs_target: "#addressModal", bs_toggle: "modal", remote:true}%>
+  <%= render partial: "common/address"%>

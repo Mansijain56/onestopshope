@@ -1,0 +1,32 @@
+<div class="modal-body">
+    <div id="all-cart-items">
+    <% cart_items.each do |ci|%>
+        <div id="AllContent<%=ci.id%>">
+        <hr>
+            <% if ci.product.images.present? %>
+                <%= image_tag ci.product.images.first, style: "width: 100px;height: 100px;" %>
+            <% end %>
+            <%= ci.product.model %><br>
+            <div id = "QuantityStatus<%=ci.id%>">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+             
+                    <% if ci.quantity == 1 %>
+                        <%= link_to "-", cart_item_path(ci), class:"btn btn-outline-primary", remote: true, method: :delete%>
+                    <% else %>
+                        <%= link_to "-", decrement_cart_item_path(ci), class:"btn btn-outline-primary", remote: true%>
+                    <% end %>
+
+                    <%= link_to "+", increment_cart_item_path(ci), class:"btn btn-outline-primary", remote: true%>
+                 </div>
+           
+                Quantity: <%= ci.quantity %><br>
+                Price: <%= ci.product.price * ci.quantity%><br>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <%= link_to "Proceed To Buy", new_order_path , class: "btn btn-primary"%>
+</div>

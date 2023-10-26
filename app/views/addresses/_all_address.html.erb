@@ -1,0 +1,11 @@
+<div class="card" id="address<%= address.id%>" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><%= address.full_name %>
+        <h6 class="card-subtitle mb-2 text-muted"><%= address.mobile_number %></h6>
+        <p class="card-text"><%= address.pincode %>, <%= address.house_no %>, <%= address.area %>, <%= address.landmark %>, <%= address.city %>, <%= address.state %>, <%= address.address_type %></p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <%= link_to "Edit Address", edit_address_path(address), class: "btn btn-danger", data: {bs_target: "#addressModal", bs_toggle: "modal", remote:true}%>
+            <%= link_to "Destroy Address", address_path(address), class: "btn btn-success", method: :delete, remote: true%>
+        </div>
+    </div>
+</div>

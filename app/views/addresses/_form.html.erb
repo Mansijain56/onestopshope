@@ -1,0 +1,26 @@
+<%= form_for(address,:html => {:id => "create_form"}, remote: true) do |a| %>
+    <div class="modal-body">
+        <%= a.label :full_name %><br>
+        <%= a.text_field :full_name %><br>
+        <%= a.label :mobile_number %><br>
+        <%= a.text_field :mobile_number %><br>
+        <%= a.label :pincode %><br>
+        <%= a.text_field :pincode %><br>
+        <%= a.label :house_no %><br>
+        <%= a.text_field :house_no %><br>
+        <%= a.label :area %><br>
+        <%= a.text_field :area %><br>
+        <%= a.label :landmark %><br>
+        <%= a.text_field :landmark %><br>
+        <%= a.label :city %><br>
+        <%= a.text_field :city %><br>
+        <%= a.label :state %><br>
+        <%= a.text_field :state %><br>
+        <%= a.label :address_type %><br>
+        <%= a.select(:address_type, ['Home', "Office"], {}, { :class => 'my_style_class' }) %>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="close-form" class="btn btn-secondary close-modal" data-bs-dismiss="modal">Close</button>
+        <%= a.submit "Submit", class:"btn btn-primary"%>
+    </div>
+<% end %>

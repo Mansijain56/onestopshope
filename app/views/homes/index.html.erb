@@ -1,0 +1,64 @@
+<div class="container text-center" style="
+    padding-bottom: 2rem;
+">
+  <div class="row" style="
+    padding-bottom: 2rem;
+">
+    <div class="col">
+        <div class="card">
+        <% if filter_home.present? %>
+            <%= link_to(products_path(category: :Home))  do %>
+                <%if filter_home.first.images.present? %>
+                    <%= image_tag filter_home.first.images.first, class: "img-fluid img-thumbnail card-img-overlay" %>
+                    <div class="card-img-overlay">
+                        <p class="card-text"><small>Home</small></p>
+                    </div>
+                <% else %>
+                <p>Please Insert Images.</p>
+                <% end %>
+            <% end %>
+        <% else %>
+            <p>Please Insert Product with category Fashion</p>
+        <%end%>
+        </div>
+    </div>
+     
+    <div class="col">
+        <div class="card">
+        <% if filter_mobile.present? %>
+            <%= link_to(products_path(category: :Mobile))  do %>
+                <%  if filter_mobile.first.images.present? %>
+                <%= image_tag filter_mobile.first.images.first, class: "img-fluid img-thumbnail card-img-overlay" %>
+                <div class="card-img-overlay">
+                    <p class="card-text"><small>Mobile</small></p>
+                </div>
+                <% else %>
+                <p>Please Insert Images.</p>
+                <% end %>
+            <% end %>
+        <% else %>
+            <p>Please Insert Product with category Mobile</p>
+        <% end %>
+        </div>
+    </div>
+    
+    <div class="col">
+        <div class="card">
+            <% if filter_kitchen.present? %>
+                <%= link_to(products_path(category: :Kitchen))  do %>
+                    <%  if filter_kitchen.first.images.present? %>
+                            <%= image_tag filter_kitchen.first.images.first, class: "img-fluid img-thumbnail " %>
+                        <div class="card-img-overlay">
+                            <p class="card-text"><small>Kitchen</small></p>
+                        </div>
+                    <% else %>
+                    <p>Please Insert Images.</p>
+                    <% end %>
+                <% end %>
+            <% else %>
+                 <p>Please Insert Product with category Home</p>
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>

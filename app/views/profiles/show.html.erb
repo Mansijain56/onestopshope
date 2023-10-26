@@ -1,0 +1,8 @@
+<p>Profile Details</p>
+<% if @profile.avatar.present?%>
+	<%= image_tag @profile.avatar%><br>
+<% end %>
+<%= @profile.name %><br>
+<%= @profile.age%><br>
+<%= @profile.gender %><br>
+<%= link_to "Edit Profile", edit_profile_path(@profile)%>

@@ -1,0 +1,5 @@
+<%= fields = [:order_id, :price, :address].join(";")%>
+<% order_id = @order.id %>
+<% price = @order.price %>
+<% address = @order.address.full_name %>
+<%= [order_id.to_s, price, address].join(";")%>

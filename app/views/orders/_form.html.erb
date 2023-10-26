@@ -1,0 +1,32 @@
+<%= form_for @order do |f|%>
+
+<%= f.label :address %>
+<div class="hstack gap-3">
+    <div id="all-address" class="hstack gap-3">
+      <% current_user.addresses.each do |a| %>
+          <%= f.radio_button :address_id, a.id.to_i %></h5>
+          <%= render "addresses/all_address", address: a  %>
+      <% end %>
+    </div>
+    <%= link_to "Add Address", new_address_path, class: "btn btn-primary", data: {bs_target: "#addressModal", bs_toggle: "modal", remote:true}%>
+</div>
+
+<hr>
+<%= f.label :payment_method%>
+<%= f.radio_button :payment_method, "voucher" %>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Your Voucher</h5>
+    <p class="card-text"><%= current_user.voucher.amount %></p>
+    <a href="#" class="card-link">View Voucher</a>
+  </div>
+</div>
+<hr>
+<%= f.label :price %>: <%= calculate%>
+<%= f.text_field :price, value: calculate, style: "display:none;" %><br>
+
+<%= f.submit "Place Order", class: "btn btn-warning" %>
+<% end %>
+
+<!-- Modal -->
+<%= render partial: "common/address"%>

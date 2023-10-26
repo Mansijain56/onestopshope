@@ -1,0 +1,36 @@
+<% @orders.each do |order| %>
+<div class="card text-center">
+  <div class="card-header">
+    <div style="display:inline-block; float: left;">
+        Order <%= order.id%>
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Invoice
+          </button>
+          <ul class="dropdown-menu">
+            <%= link_to "Invoice CSV", generate_invoice_orders_path(format: :csv), class:"dropdown-item", download: ["Invoice", order.id].join(" ") %>
+            <li><a class="dropdown-item" href="#">CSV</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">PDF</a></li>
+          </ul>
+        </div>
+    </div>
+    <div style="display:inline-block; float: right;">
+        Total: <%= order.price%>
+    </div>
+  </div>
+  <% order.order_items.each do |item| %>
+    <div class="card-body">
+        <%= image_tag item.product.images.first, style:"display:inline-block;float: left;margin-left: 0px;width: 100px;" %>
+        <h5 class="card-title"><%= item.product.brand%></h5>
+        <h6 class="card-title"><%= item.product.model%></h6>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">View Product</a>
+    </div>
+    <hr>
+  <% end %>
+  <div class="card-footer text-muted">
+    Placed At <%= order.created_at.strftime("%Y-%m-%d")%>
+  </div>
+</div>
+<%end%>

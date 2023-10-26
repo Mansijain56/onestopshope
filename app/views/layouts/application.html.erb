@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OnestopShoping</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'select_tag', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if notice.present?%>
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+      <p class="notice"><%= notice %></p>
+    </div>
+    <% end %>
+
+    <% if alert.present?%>
+      <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    <%= render partial: 'common/header'%>
+    <%= yield %>
+    <%= render partial: 'common/cart'%>
+    <%= render partial: 'common/footer'%>
+  </body>
+</html>

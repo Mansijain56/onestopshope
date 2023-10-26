@@ -1,0 +1,47 @@
+<%= form_for @product do |f|%>
+ <% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> Prohibited this Customer from being saved:</h2>
+
+    <ul>
+      <% @product.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %> 
+
+<div class="mb-3">
+  <%= f.label :brand, class: "form-label"%><br>
+</div>
+<div class="mb-3">
+  <%= f.text_field :brand, class: "form-control", id: "exampleFormControlInput1" %><br>
+</div>
+<div class="mb-3">
+  <%= f.label :model, class: "form-label" %><br>
+</div>
+<div class="mb-3">
+  <%= f.text_field :model, class: "form-control", id: "exampleFormControlInput1"%><br>
+</div>
+<div class="mb-3">
+  <%= f.label :category, class: "form-label" %>
+</div>
+<div>
+  <%= f.select :category, ["Kitchen", "Home", "Mobile"], id: "independent", class: "form-select form-select-lg mb-3" %>
+</div>
+
+<div class="mb-3">
+  <%= f.label :price, class: "form-label"%>
+</div>
+<div class="mb-3">
+  <%= f.text_field :price, class: "form-control", id: "exampleFormControlInput1"%>
+</div>
+<div class="mb-3">
+  <%= f.label :images, class: "form-label"%>
+</div>
+<div class="mb-3">
+  <%= f.file_field :images, multiple: true, class:"form-control form-control-lg", id: "exampleFormControlInput1" %>
+</div>
+
+<%= f.submit "Create Product", class: "btn btn-primary" %>
+<% end %>

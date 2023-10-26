@@ -1,0 +1,25 @@
+<div class="container text-center" style="">
+  <div class="row row-cols-4" style="">
+    <% @products.each do |p|%>
+      <div class="col" style="">
+        <div class="card text-bg-light mb-3 border-0 mask" style="">
+          <%= link_to(p)  do %>
+          <% if p.images.attached?  %>
+            <div class="col align-self-start">
+              <%= image_tag p.images.first,  class:"card-img-top"%>
+            </div>
+          <% else %>
+            <p>Please insert images</p>
+          <% end %>
+          <% end %>
+          <div class="card-body" style = "background-color: white;" >
+            <p class="card-title">Brand: <%= p.brand%></p>
+            <p class="card-text">Model: <%= p.model%> </p>
+            <p class="card-text">Price: <%= p.price%> </p> 
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

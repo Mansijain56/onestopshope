@@ -1,0 +1,13 @@
+ <div class="btn-group" role="group" aria-label="Basic outlined example">
+
+     <% if ci.quantity == 1 %>
+         <%= link_to "-", cart_item_path(ci), class:"btn btn-outline-primary", remote: true, method: :delete%>
+     <% else %>
+         <%= link_to "-", decrement_cart_item_path(ci), class:"btn btn-outline-primary", remote: true%>
+     <% end %>
+
+     <%= link_to "+", increment_cart_item_path(ci), class:"btn btn-outline-primary", remote: true%>
+  </div>
+
+ Quantity: <%= ci.quantity %><br>
+ Price: <%= ci.product.price * ci.quantity%><br>

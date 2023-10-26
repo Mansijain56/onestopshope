@@ -1,0 +1,65 @@
+<div>
+  <% if @product.images.attached?  %>
+    <% @product.images.each do |image| %>
+      <div class="col align-self-start">
+         <%= image_tag image, width: "300px", height: "210px"%>
+      </div>
+    <% end %> 
+  <% else %>
+    <p>Please insert images</p>
+  <% end %> 
+</div>
+<div>
+  <p> <em> Seller: <%= @product.user.profile.name %> </em></p>
+  <p>Company: <%= @product.brand%> </p>
+  <p>Model: <%= @product.model %></p>
+  <p>Price: <%= @product.price %></p>
+</div>
+
+<%if current_user.view_counts.where(product_id: @product.id, event: "product show page").present?%>
+<div>
+<h1>Views</h1>
+  <p>Views by you <%= current_user.view_counts.where(product_id: @product.id, event: "product show page").first.count%> </p>
+  <p>Overall views: <%= ViewCount.where(product_id: @product.id, event:"product show page").sum(:count)  %></p>
+</div>
+<% end %>
+
+<%if  current_user.view_counts.where(product_id: @product.id, event: "view cart button").present?%>
+<div>
+<h1>Click</h1>
+  <p>Clicks by you <%= current_user.view_counts.where(product_id: @product.id, event: "view cart button").first.count%> </p>
+  <p>Overall clicks: <%= ViewCount.where(product_id: @product.id, event:"view cart button").sum(:count)  %></p>
+</div>
+<% end %>
+
+<div>
+  <p> <em> Seller: <%= @product.user.profile.name %> </em></p>
+  <p>Company: <%= @product.brand%> </p>
+  <p>Model: <%= @product.model %></p>
+  <p>Price: <%= @product.price %></p>
+</div>
+<% if current_user == @product.user %>
+    <%= link_to "Edit Product", edit_product_path(@product)%>
+    <%= link_to "Delete Product", product_path(@product), method: :delete%>
+<% end %>
+
+<% if user_signed_in? && current_user.cart.cart_items.find_by(product_id: @product.id).present?%>
+  <%=  link_to "Add to Cart", cart_items_path(id: @product.id), class: "btn btn-primary eventTrigger", data: {bs_target: "#CartItems", bs_toggle: "modal", remote: true}%>
+<% elsif user_signed_in? %>
+ <%= link_to "Add to Cart", register_cart_item_path(id: @product), class: "btn btn-primary eventTrigger", data: {bs_target: "#CartItems", bs_toggle: "modal", remote:true}, method: :post%>
+<% else %>
+  <%=  link_to "Add to Cart", user_session_path, class: "btn btn-primary" %>
+<% end %>
+
+<script>
+$("").on('click', function(){
+  var id = '<%= @product.id %>';
+  $.ajax({
+    url: "<%=  %>",
+    data: {
+      id: id
+    },
+    dataType: "json"
+  })
+})
+</script>

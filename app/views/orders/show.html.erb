@@ -1,0 +1,11 @@
+<h1> Order Details</h1>
+Order ID: <%= @order.id %><br>
+Price: <%= @order.price %><br>
+Address:<div class="card" style="width: 18rem;">  
+            <div class="card-body">
+                <h5 class="card-title"><%= @order.address.full_name %>
+                <h6 class="card-subtitle mb-2 text-muted"><%= @order.address.mobile_number %></h6>
+                <p class="card-text"><%= @order.address.pincode %>, <%= @order.address.house_no %>, <%= @order.address.area %>, <%= @order.address.landmark %>, <%= @order.address.city %>, <%= @order.address.state %>, <%= @order.address.address_type %></p>
+            </div>
+        </div>
+Payment Method: <%= @order.payment_method%>
